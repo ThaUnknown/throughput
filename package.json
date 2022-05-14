@@ -1,17 +1,8 @@
 {
   "name": "throughput",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Speed measurment",
   "main": "index.js",
-  "dependencies": {
-    "stream": "^0.0.2"
-  },
-  "devDependencies": {
-    "eslint": "^7.22.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "ThaUnknown",
   "license": "MIT",
   "repository": {
