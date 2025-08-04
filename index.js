@@ -1,12 +1,25 @@
+const hrtime = typeof process !== 'undefined' && !!process.hrtime
 const maxTick = 65535
 const resolution = 10
-const timeDiff = 1000 / resolution
+const timeDiff = hrtime
+  ? 1e9 / resolution
+  : 1e3 / resolution
+
+const now = hrtime
+  ? () => {
+      const [seconds, nanoseconds] = process.hrtime()
+      return (seconds * 1e9 + nanoseconds)
+    }
+  : () => performance.now()
+
+/** @param {number} start */
 function getTick (start) {
-  return (+Date.now() - start) / timeDiff & 65535
+  return (now() - start) / timeDiff & maxTick
 }
 
+/** @param {number} seconds */
 module.exports = function (seconds) {
-  const start = +Date.now()
+  const start = now()
 
   const size = resolution * (seconds || 5)
   const buffer = [0]
@@ -27,7 +40,9 @@ module.exports = function (seconds) {
 
     if (delta) buffer[pointer - 1] += delta
 
+    /** @type {number} */
     const top = buffer[pointer - 1]
+    /** @type {number} */
     const btm = buffer.length < size ? 0 : buffer[pointer === size ? 0 : pointer]
 
     return buffer.length < resolution ? top : (top - btm) * resolution / buffer.length

@@ -1,10 +1,11 @@
 {
   "name": "throughput",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Speed measurment",
   "main": "index.js",
   "author": "ThaUnknown",
   "license": "MIT",
+  "packageManager": "pnpm@9.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ThaUnknown/throughput.git"
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/ThaUnknown/throughput/issues"
   },
-  "homepage": "https://github.com/ThaUnknown/throughput#readme"
+  "homepage": "https://github.com/ThaUnknown/throughput#readme",
+  "devDependencies": {
+    "eslint-config-standard-universal": "^1.0.8"
+  }
 }
